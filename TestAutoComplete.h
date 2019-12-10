@@ -13,4 +13,5 @@
 void testRunSearch();
 void testCreateAutoCompleteData();
 void testCreateAutoCompleteData();
+void test_init_offline_data();
 #endif //AUTOCOMPLETEGOOGLE_TESTAUTOCOMPLETE_H

@@ -17,13 +17,18 @@ void testRunSearch() {
 /***************  Test Class   GoogleSearch  *************/
 void testCreateAutoCompleteData() {
     std::cout << "\n******test  testCreateAutoCompleteData *****\n\n" << std::endl;
-    AutoCompleteData autoCompleteData(" And the saying pleased me well: and I took twelve men of you, one",
-                                      "Moses_and_the_Sages__Bibl", 8);
+    AutoCompleteData autoCompleteData("Moses_and_the_Sages__Bibl",15750," And the saying pleased me well: and I took twelve men of you, one");
     std::cout<<autoCompleteData;
 
 }
 
 /***************  Test Class  OffLineData  *************/
 void test_init_offline_data() {
+    std::cout << "\n******  test_init_offline_data *****\n\n" << std::endl;
+
+    OffLineData offLineData;
+    VectorCompletion vectorCompletion=offLineData.GetVectorCompletion("twelve");
+    printVectorCompletion(vectorCompletion);
+
 
 }
