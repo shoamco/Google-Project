@@ -26,9 +26,9 @@ inline void GoogleSearch::Run() {
     while(true){
         std::cout << "enter search\n ";
         std::getline (std::cin,input);//get input user
-        std::cout<<"input "<<input<<std::endl;
+//        std::cout<<"input "<<input<<std::endl;
         std::vector<AutoCompleteData> best_completions= GetBestKCompletions(input);
-        printVectorCompletion(best_completions);
+        printAllCompletion(best_completions);
     }
 }
 inline std::vector<AutoCompleteData> GoogleSearch::GetBestKCompletions(const std::string& prefix){
