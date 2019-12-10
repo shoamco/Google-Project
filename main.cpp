@@ -1,8 +1,10 @@
 #include <iostream>
 #include "TestAutoComplete.h"
+
 int main() {
 testRunSearch();
-
+//    testCreateAutoCompleteData();
+//    test_init_offline_data();
     return 0;
 }
 
