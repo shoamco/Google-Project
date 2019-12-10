@@ -12,4 +12,5 @@
 
 void testRunSearch();
 void testCreateAutoCompleteData();
+void testCreateAutoCompleteData();
 #endif //AUTOCOMPLETEGOOGLE_TESTAUTOCOMPLETE_H
