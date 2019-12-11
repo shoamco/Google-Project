@@ -7,10 +7,14 @@
 //TEST(AutoCompleteDataTests, ctor) {
 //
 //}
+
+std::string file_name("../test.json");
+HandleFile handleFile;
+MapComplete mapComplete=handleFile.JsonFileToMap(file_name);
 /***************   Test Class GoogleSearch  *************/
 void testRunSearch() {
     std::cout << "\n******test run search *****\n\n" << std::endl;
-    GoogleSearch googleSearch;
+    GoogleCompletion googleSearch(mapComplete);
     googleSearch.Run();
 }
 
@@ -26,33 +30,27 @@ void testCreateAutoCompleteData() {
 void test_init_offline_data() {
     std::cout << "\n******  test_init_offline_data *****\n\n" << std::endl;
 
-    OffLineData offLineData;
+    OffLineData offLineData(mapComplete);
     VectorCompletion vectorCompletion=offLineData.GetVectorCompletion("twelve");
     printVectorCompletion(vectorCompletion);
 
 
 
 }
-
+/***************  Test Class HandleFile *************/
 void test_open_json_file(){
-    //    std::ifstream file("offline_result.json");
-////    json j;
-//    json data_json;
-//    file >> data_json;
-//std::string file_path("offline_result.json");
-//std::string file_name("outputWilliam_Shakespeare__Hamlet.txt");
-    std::string file_name("../profile.json");
-//    std::string file_name("offline_result.json");
-//    std::ifstream ifs{"offline_result.json"};
+    HandleFile handleFile;
+    std::string file_name("../test.json");
+    MapComplete mapComplete=handleFile.JsonFileToMap(file_name);
+    std::cout<<"mapComplete"<<mapComplete.size();
+    OffLineData offLineData(mapComplete);
 
 
-    std::ifstream file(file_name);
-    if (file.is_open()) {
-        json data_json = json::parse(file);
-        for (json::iterator it = data_json.begin(); it != data_json.end(); ++it) {
-            std::cout << it.key() << " : " << it.value() << std::endl;
-        }
-    }
-    else
-    { throw "Unable to open file";}
+}
+void test_file_to_array(){
+  HandleFile handleFile;
+  std::vector<std::string> lines=handleFile.FileToArray("../t.txt");
+  std::cout<<"size vector "<<lines.size()<<std::endl;
+    for (auto i = lines.begin(); i != lines.end(); ++i)
+        std::cout << *i << ' ';
 }
