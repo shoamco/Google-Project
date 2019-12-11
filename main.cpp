@@ -1,10 +1,16 @@
 #include <iostream>
-#include "TestAutoComplete.h"
+#include "Test/TestAutoComplete.h"
+#include <json.hpp>
+
+
+using json = nlohmann::json;
 
 int main() {
-testRunSearch();
+//    test_open_json_file();
+    testRunSearch();
 //    testCreateAutoCompleteData();
 //    test_init_offline_data();
+//    test_file_to_array();
     return 0;
 }
 
