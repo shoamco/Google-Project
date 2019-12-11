@@ -8,20 +8,26 @@
 //
 //}
 
-std::string file_name("../test.json");
+//std::string file_name("../test.json");
+std::string file_name("../Adventures_of_Huckleberry_Finn.json");
 HandleFile handleFile;
+
+//std::vector<std::string> lines=handleFile.FileToArray("../t.txt");
+std::vector<std::string> lines=handleFile.FileToArray("../outputAdventures_of_Huckleberry_Finn.txt");
 MapComplete mapComplete=handleFile.JsonFileToMap(file_name);
+
 /***************   Test Class GoogleSearch  *************/
 void testRunSearch() {
     std::cout << "\n******test run search *****\n\n" << std::endl;
-    GoogleCompletion googleSearch(mapComplete);
+    OffLineData offLineData(mapComplete,lines);
+    GoogleCompletion googleSearch(offLineData);
     googleSearch.Run();
 }
 
 /***************  Test Class   GoogleSearch  *************/
 void testCreateAutoCompleteData() {
     std::cout << "\n******test  testCreateAutoCompleteData *****\n\n" << std::endl;
-    AutoCompleteData autoCompleteData("Moses_and_the_Sages__Bibl",15750," And the saying pleased me well: and I took twelve men of you, one",28);
+    AutoCompleteData autoCompleteData("Moses_and_the_Sages__Bibl",15750,28);
     std::cout<<autoCompleteData;
 
 }
@@ -30,7 +36,7 @@ void testCreateAutoCompleteData() {
 void test_init_offline_data() {
     std::cout << "\n******  test_init_offline_data *****\n\n" << std::endl;
 
-    OffLineData offLineData(mapComplete);
+    OffLineData offLineData(mapComplete,lines);
     VectorCompletion vectorCompletion=offLineData.GetVectorCompletion("twelve");
     printVectorCompletion(vectorCompletion);
 
@@ -43,7 +49,7 @@ void test_open_json_file(){
     std::string file_name("../test.json");
     MapComplete mapComplete=handleFile.JsonFileToMap(file_name);
     std::cout<<"mapComplete"<<mapComplete.size();
-    OffLineData offLineData(mapComplete);
+    OffLineData offLineData(mapComplete,lines);
 
 
 }
