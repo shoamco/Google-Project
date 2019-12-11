@@ -26,7 +26,7 @@ typedef std::unordered_map<std::string, VectorCompletion> MapComplete;
  * */
 class OffLineData {
 public:
-    OffLineData();
+    OffLineData(MapComplete offline_table);
 
     MapComplete GetMap() const;
 
@@ -42,35 +42,35 @@ private:
 inline json openFileToJson(std::string file_name){
 
 }
-inline OffLineData::OffLineData() {
-    int score;
-    std::string completed_sentence;
-    std::string source_text;
-    json offline_data;
-    std::string file_name("../test.json");
-    std::ifstream file(file_name);
-    if (file.is_open()) {
-        offline_data = json::parse(file);
-
-        for (json::iterator it = offline_data.begin(); it != offline_data.end(); ++it) {
-          completed_sentence=it.key();
-
-            score = it.value()[1];
-            source_text = it.value()[0];
-            int x = it.value()[2][0];
-            int line;
-
-            VectorCompletion vectorComplete;
-            for (int i = 0; i < it.value()[2].size(); ++i) {//enter to vector  all completed sentence
-                line = it.value()[2][i];
-                AutoCompleteData autoCompleteData(source_text,line,completed_sentence,score);
-                vectorComplete.push_back(autoCompleteData);
-            }
-
-            std::pair<std::string,VectorCompletion> pair_data (completed_sentence,vectorComplete);
-            offline_table.insert(pair_data);
-        }
-    } else { throw "Unable to open file"; }
+inline OffLineData::OffLineData( MapComplete mapComplete):offline_table(mapComplete) {
+//    int score;
+//    std::string completed_sentence;
+//    std::string source_text;
+//    json offline_data;
+//    std::string file_name("../test.json");
+//    std::ifstream file(file_name);
+//    if (file.is_open()) {
+//        offline_data = json::parse(file);
+//
+//        for (json::iterator it = offline_data.begin(); it != offline_data.end(); ++it) {
+//          completed_sentence=it.key();
+//
+//            score = it.value()[1];
+//            source_text = it.value()[0];
+//            int x = it.value()[2][0];
+//            int line;
+//
+//            VectorCompletion vectorComplete;
+//            for (int i = 0; i < it.value()[2].size(); ++i) {//enter to vector  all completed sentence
+//                line = it.value()[2][i];
+//                AutoCompleteData autoCompleteData(source_text,line,completed_sentence,score);
+//                vectorComplete.push_back(autoCompleteData);
+//            }
+//
+//            std::pair<std::string,VectorCompletion> pair_data (completed_sentence,vectorComplete);
+//            offline_table.insert(pair_data);
+//        }
+//    } else { throw "Unable to open file"; }
 
 
 }
