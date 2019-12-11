@@ -7,10 +7,10 @@
 
 #include <vector>
 #include <string>
-#include "AutoCompleteData.h"
-#include "OffLineData.h"
+#include "Model/AutoCompleteData.h"
+#include "Model/OffLineData.h"
 
-class GoogleSearch{
+class GoogleCompletion{
 public:
 
     std::vector<AutoCompleteData> GetBestKCompletions(const std::string& prefix);
@@ -19,7 +19,7 @@ public:
 
 };
 
-inline void GoogleSearch::Run() {
+inline void GoogleCompletion::Run() {
     /**
     The function waiting for user input  ,get input and  printing  the best  5 complement * */
     std::string input;
@@ -31,7 +31,7 @@ inline void GoogleSearch::Run() {
         printAllCompletion(best_completions);
     }
 }
-inline std::vector<AutoCompleteData> GoogleSearch::GetBestKCompletions(const std::string& prefix){
+inline std::vector<AutoCompleteData> GoogleCompletion::GetBestKCompletions(const std::string& prefix){
     return offLineData.GetVectorCompletion(prefix);
 }
 #endif //AUTOCOMPLETEGOOGLE_GOOGLESEARCH_H

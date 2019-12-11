@@ -6,16 +6,17 @@
 #define AUTOCOMPLETEGOOGLE_AUTOCOMPLETEDATA_H
 
 #include <string>
-
+#include<string.h>
 class AutoCompleteData {
 public:
-    AutoCompleteData(std::string source_text, int offset, std::string completed_sentence);
+    AutoCompleteData(std::string source_text, int offset, std::string completed_sentence,int score);
 
     int CalculateSource();
 
     friend std::ostream &operator<<(std::ostream &ostream, const AutoCompleteData autoCompleteData);
 
     std::string GetCompletedSentence();
+    int GetScore();
 
 private:
     std::string source_text;
@@ -29,14 +30,18 @@ inline std::string AutoCompleteData::GetCompletedSentence() {
     return completed_sentence;
 
 }
+inline int AutoCompleteData::GetScore() {
+    return score;
 
-inline int AutoCompleteData::CalculateSource() {
-    return 1;
 }
 
-inline   AutoCompleteData::AutoCompleteData(std::string source_text, int offset, std::string completed_sentence)
-        : source_text(source_text), offset(offset), completed_sentence(completed_sentence) {
-    score = CalculateSource();
+inline int AutoCompleteData::CalculateSource() {
+    return strlen(completed_sentence.c_str())*2 ;
+}
+
+inline   AutoCompleteData::AutoCompleteData(std::string source_text, int offset, std::string completed_sentence,int score)
+        : source_text(source_text), offset(offset), completed_sentence(completed_sentence),score(score) {
+
 
 }
 

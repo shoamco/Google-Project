@@ -6,7 +6,7 @@
 #define AUTOCOMPLETEGOOGLE_OFFLINEDATA_H
 
 #include <unordered_map>
-#include "AutoCompleteData.h"
+#include "Model/AutoCompleteData.h"
 #include "vector"
 #include <json.hpp>
 #include <fstream>
@@ -36,7 +36,7 @@ public:
 
 private:
     MapComplete offline_table;
-    json offline_data;
+//    json offline_data;
 
 };
 inline json openFileToJson(std::string file_name){
@@ -46,6 +46,7 @@ inline OffLineData::OffLineData() {
     int score;
     std::string completed_sentence;
     std::string source_text;
+    json offline_data;
     std::string file_name("../test.json");
     std::ifstream file(file_name);
     if (file.is_open()) {
@@ -79,9 +80,7 @@ inline VectorCompletion OffLineData::GetVectorCompletion(const std::string key) 
 
 }
 
-inline int *OffLineData::GetAllCompletion(const std::string key) {
-    offline_data[key];
-}
+
 
 inline MapComplete OffLineData::GetMap() const {
     return offline_table;
