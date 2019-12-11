@@ -41,19 +41,20 @@ inline MapComplete HandleFile::JsonFileToMap(std::string file_name) {
             VectorCompletion vectorComplete;
             for (int i = 0; i < it.value()[2].size(); ++i) {//enter to vector  all completed sentence
                 line = it.value()[2][i];
-                AutoCompleteData autoCompleteData(source_text, line, completed_sentence, score);
+                AutoCompleteData autoCompleteData(source_text, line, score);
                 vectorComplete.push_back(autoCompleteData);
             }
 
             std::pair<std::string, VectorCompletion> pair_data(completed_sentence, vectorComplete);
             map_data.insert(pair_data);
+            file.close();
         }
     } else { throw "Unable to open file"; }
     return map_data;
 }
 
 inline std::vector<std::string> HandleFile::FileToArray(std::string file_name) {
-    std::cout << "in FileToArray\n";
+
     std::ifstream file(file_name);
     std::vector<std::string> lines;
 
@@ -61,10 +62,11 @@ inline std::vector<std::string> HandleFile::FileToArray(std::string file_name) {
         std::string line;
         int i = 0;
         while (getline(file, line)) {
-            std::cout << "line: " << line << std::endl;
+//            std::cout << "line: " << line << std::endl;
             lines.push_back(line);
 
         }
+        file.close();
     } else {
         throw;
     }
